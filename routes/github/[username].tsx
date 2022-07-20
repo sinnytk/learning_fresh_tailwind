@@ -2,6 +2,7 @@
 
 /** @jsx h */
 import { h } from "preact";
+import { tw } from "twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 
 interface User {
@@ -28,10 +29,50 @@ export default function Page({ data }: PageProps<User | null>) {
   }
 
   return (
-    <div>
-      <img src={data.avatar_url} width={64} height={64} />
-      <h1 alt={`${data.name}'s profile photo`}>{data.name}</h1>
-      <p>{data.login}</p>
-    </div>
+    <main class={tw`text-white`}>
+      <div class={tw`relative`}>
+        <header class={tw`flex items-center p-6 bg-gray-800 w-auto`}>
+          <img class={tw`w-auto h-8`} src="/github_logo.png"></img>
+          <nav class={tw`flex items-center w-full justify-between`}>
+            <div class={tw`px-6`}>
+              <ul class={tw`flex gap-4`}>
+                <li>
+                  <a>Product</a>
+                </li>
+                <li>
+                  <a>Team</a>
+                </li>
+                <li>
+                  <a>Enterprise</a>
+                </li>
+                <li>
+                  <a>Explore</a>
+                </li>
+                <li>
+                  <a>Marketplace</a>
+                </li>
+                <li>
+                  <a>Pricing</a>
+                </li>
+              </ul>
+            </div>
+            <div class={tw`flex items-center justify-end gap-5 text-right`}>
+              <input
+                class={tw
+                  `bg-gray-900 placeholder-gray-300 p-2 text-white rounded`}
+                type="text"
+                placeholder="Search"
+              />
+              <ul class={tw`flex gap-4`}>
+                <li>Sign In</li>
+                <li>Sign Up</li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+      </div>
+      <div class={tw`p-4`}></div>
+      <img src={data.avatar_url} alt={data.name} />
+    </main>
   );
 }
